@@ -1,0 +1,28 @@
+class Solution:    
+    def cleanIsland(self, grid: List[List[str]], i: int,j: int):
+        if ((grid[i][j+1]) and (grid[i][j+1] == "1")):
+            grid[i][j+1] = 0
+            cleanIsland(grid,i,j+1)
+        if (grid[i+1][j]) and (grid[i+1][j] == "1"):
+            grid[i+1][j] = 0
+            cleanIsland(grid,i+1,j)
+        if (grid[i][j-1]) and (grid[i][j-1] == "1"):
+            grid[i][j-1] = 0
+            cleanIsland(grid,i,j-1)            
+        if (grid[i-1][j]) and (grid[i-1][j] == "1"):
+            grid[i-1][j] = 0
+            cleanIsland(grid,i-1,j)
+    
+    def numIslands(self, grid: List[List[str]]) -> int:
+        
+        lenLin = len(grid[0])
+        lenCol = len(grid)
+        islandCount = 0
+        
+        for i in range(lenCol):
+            for j in range(lenLin):
+                if(grid[i][j] == "1"):
+                    self.CleanIsland(grid,i,j)
+                    islandCount += 1
+        return islandCount
+    
